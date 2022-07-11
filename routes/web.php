@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\PanelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('/form-login', [FormController::class,'login'])->name('login');
+Route::get('/', [FormController::class,'login'])->name('login');
 Route::get('/form', [FormController::class,'index'])->name('index');
+
+Route::get('/panel', [PanelController::class,'app']);
+Route::get('/panel/listUsers', [PanelController::class,'listUsers']);
