@@ -68,6 +68,14 @@
         </div>
     </div>
     <div id="main">
+
+        <div style="width: 100%; display: flex; justify-content: end;">
+            <form action="">
+                @csrf
+                <input value="Logout" type="submit" class="btn btn-danger"/>
+            </form>
+        </div>
+
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
                 <i class="bi bi-justify fs-3"></i>
