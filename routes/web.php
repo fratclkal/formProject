@@ -44,3 +44,5 @@ Route::group(['prefix' => 'panel', 'middleware' => 'admin'], function (){
     Route::post('/get-user', [PanelUserController::class, 'get'])->name('panel.get_user');
     Route::post('/delete-user', [PanelUserController::class, 'delete'])->name('panel.delete_user');
 });
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
