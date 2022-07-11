@@ -117,12 +117,12 @@
 
 <div class="image"></div>
 <div class="sign-in">
-    <h1>Giriş</h1>
-    <form>
+    <h1>Kayıt Ol</h1>
+    <form action="{{route('register')}}" method="POST">
         <input type="email" placeholder="Kullanıcı Adı">
         <input type="password" placeholder="Şifre">
         <input type="password" placeholder="Şifre Tekrar">
-        <input type="submit" value="Giriş">
+        <input type="submit" value="Kayıt Ol">
     </form>
 </div>
 
