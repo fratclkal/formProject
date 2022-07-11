@@ -118,9 +118,12 @@
 <div class="image"></div>
 <div class="sign-in">
     <h1>Giriş</h1>
-    <form>
-        <input type="email" placeholder="Kullanıcı Adı">
-        <input type="password" placeholder="Şifre">
+
+    <form action="{{route('login')}}" method="post">
+        @csrf
+
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Şifre">
         <input type="submit" value="Giriş">
     </form>
 </div>
