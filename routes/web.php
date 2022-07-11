@@ -22,6 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FormController::class,'login'])->name('login');
 Route::get('/form', [FormController::class,'index'])->name('index');
 
-Route::get('/panel', [PanelController::class,'app']);
+Route::get('/panel', [PanelController::class,'app'])->name('panel');
 Route::get('/panel/listUsers', [PanelController::class,'listUsers']);
 Route::get('/panel/listForms', [PanelController::class,'listForms']);
