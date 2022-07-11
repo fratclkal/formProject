@@ -13,4 +13,8 @@ class PanelController extends Controller
     public function listUsers(){
         return view('panel.listUsers');
     }
+
+    public function listForms(){
+        return view('panel.listForms');
+    }
 }

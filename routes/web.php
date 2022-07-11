@@ -24,3 +24,4 @@ Route::get('/form', [FormController::class,'index'])->name('index');
 
 Route::get('/panel', [PanelController::class,'app']);
 Route::get('/panel/listUsers', [PanelController::class,'listUsers']);
+Route::get('/panel/listForms', [PanelController::class,'listForms']);
