@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\Panel\PanelUserController;
 use App\Http\Controllers\PanelController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-
+Route::get('/register', [PanelUserController::class,'register'])->name('register');
 Route::group(['middleware' => 'is_not_auth'], function (){
     Route::get('/', [FormController::class,'login'])->name('login');
 });

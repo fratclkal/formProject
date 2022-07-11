@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class PanelUserController extends Controller
 {
+
+    function register(){
+        return view('panel.register');
+    }
+
     function create(Request $request){
         $request->validate([
             'email' => ['required', 'email', 'unique:users,email', 'max:255'],
