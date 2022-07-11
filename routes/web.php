@@ -38,4 +38,6 @@ Route::group(['prefix' => 'panel', 'middleware' => 'admin'], function (){
     Route::get('/', [PanelController::class,'app'])->name('panel');
     Route::get('/listUsers', [PanelController::class,'listUsers']);
     Route::get('/listForms', [PanelController::class,'listForms']);
+    Route::get('/fetchUsers', [PanelUserController::class,'fetch'])->name('panel.fetch.users');
+    Route::post('/create-user', [PanelUserController::class, 'create'])->name('panel.create_user');
 });
