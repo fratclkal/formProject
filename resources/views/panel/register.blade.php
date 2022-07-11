@@ -54,6 +54,7 @@
             gap: 20px;
         }
 
+        input[type="text"],
         input[type="email"],
         input[type="password"] {
             padding: 10px;
@@ -63,12 +64,14 @@
             outline: none;
         }
 
+        input[type="text"]::placeholder,
         input[type="email"]::placeholder,
         input[type="password"]::placeholder {
             letter-spacing: 2px;
             transition: all 0.3s ease;
         }
 
+        input[type="text"]:hover::placeholder,
         input[type="email"]:hover::placeholder,
         input[type="password"]:hover::placeholder {
             color: #000;
