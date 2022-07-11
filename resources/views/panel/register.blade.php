@@ -119,9 +119,11 @@
 <div class="sign-in">
     <h1>Kayıt Ol</h1>
     <form action="{{route('register')}}" method="POST">
-        <input type="email" placeholder="Kullanıcı Adı">
-        <input type="password" placeholder="Şifre">
-        <input type="password" placeholder="Şifre Tekrar">
+        @csrf
+        <input type="text" placeholder="İsim" name="name">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Şifre">
+        <input type="password" name="password_confirmation" placeholder="Şifre Tekrar">
         <input type="submit" value="Kayıt Ol">
     </form>
 </div>
