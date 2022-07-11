@@ -18,7 +18,11 @@ class IsNotAuth
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()){
-            return abort(401);
+            if (Auth::user()->role == 'Admin'){
+                return redirect()->route('panel');
+            }else{
+                return redirect()->route('index');
+            }
         }else{
             return $next($request);
         }
