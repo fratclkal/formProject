@@ -4,6 +4,7 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\Panel\PanelUserController;
 use App\Http\Controllers\PanelController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,11 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/register', [PanelUserController::class,'register'])->name('register');
+
 Route::group(['middleware' => 'is_not_auth'], function (){
     Route::get('/', [FormController::class,'login'])->name('login');
+    Route::post('/', [LoginController::class, 'login'])->name('login');
+    Route::post('/register', [LoginController::class,'register'])->name('register');
 });
 
 Route::group(['middleware' => 'is_former'], function (){
@@ -31,7 +35,7 @@ Route::group(['middleware' => 'is_former'], function (){
 
 
 Route::group(['prefix' => 'panel', 'middleware' => 'admin'], function (){
-    Route::get('/panel', [PanelController::class,'app'])->name('panel');
-    Route::get('/panel/listUsers', [PanelController::class,'listUsers']);
-    Route::get('/panel/listForms', [PanelController::class,'listForms']);
+    Route::get('/', [PanelController::class,'app'])->name('panel');
+    Route::get('/listUsers', [PanelController::class,'listUsers']);
+    Route::get('/listForms', [PanelController::class,'listForms']);
 });
