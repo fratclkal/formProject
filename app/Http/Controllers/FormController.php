@@ -7,6 +7,7 @@ use App\Models\Form;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\File;
+use Yajra\DataTables\Facades\DataTables;
 
 class FormController extends Controller
 {
@@ -97,5 +98,27 @@ class FormController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+
+    public function fetch(){
+        $forms = Form::where('user_id', Auth::id())->orderByDesc('created_at')->get()->take(5);
+
+        return DataTables::of($forms)
+            ->editColumn('name', function ($data){
+                return $data->name.' '.$data->sur_name;
+            })
+            ->addColumn('creator', function ($data){
+                return $data->getUser->name;
+            })
+            ->addColumn('delete', function ($data){
+                return '<a class="btn btn-primary mr-1" target="_blank" href="'.route('front.show.forms', $data->id).'">Gör</a> ';
+            })->rawColumns(['delete'])->make();
+    }
+
+    public function show($id){
+        $form = Form::where('id', $id)->first();
+        if (Auth::id() == $form->user_id){
+            return view('panel.showForm', compact('form'));
+        }
     }
 }

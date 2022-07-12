@@ -29,7 +29,11 @@
                 <div class="col-md-8 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{route('listForms')}}" class="btn btn-primary d-inline"><i class="fa fa-angle-left"></i></a>
+                            @if(\Illuminate\Support\Facades\Auth::user()->role == 'Admin')
+                                <a href="{{route('listForms')}}" class="btn btn-primary d-inline"><i class="fa fa-angle-left"></i></a>
+                            @else
+                                <a href="{{route('index')}}" class="btn btn-primary d-inline"><i class="fa fa-angle-left"></i></a>
+                            @endif
                             <h4 class="card-title d-inline">Form</h4>
                         </div>
                         <div class="card-content">

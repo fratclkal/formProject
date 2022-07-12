@@ -174,38 +174,17 @@
                         <div class="card-content">
                             <!-- table hover -->
                             <div class="table-responsive">
-                                <table class="table table-hover mb-0">
+                                <table id="table1" class="table table-hover mb-0">
                                     <thead>
                                     <tr>
-                                        <th>Ad</th>
-                                        <th>Soyad</th>
+                                        <th>Ad Soyad</th>
+                                        <th>Oluşturucu</th>
                                         <th>Mobil Tel</th>
                                         <th>E-posta</th>
-                                        <th>Ödeme Türü</th>
                                         <th>Detay</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="text-bold-500">Nusret</td>
-                                        <td>Kurar</td>
-                                        <td class="text-bold-500">+90 543 885 85 33</td>
-                                        <td>nkurar@gmail.com</td>
-                                        <td>Nakit</td>
-                                        <td><a href="#"><i
-                                                    class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                    data-feather="mail"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-bold-500">Fırat</td>
-                                        <td>ÇELİKAL</td>
-                                        <td class="text-bold-500">+90 536 693 68 86</td>
-                                        <td>firatcelkal@gmail.com</td>
-                                        <td>Kredi Kartı</td>
-                                        <td><a href="#"><i
-                                                    class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                    data-feather="mail"></i></a></td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -287,6 +266,28 @@
             }
         });
     }
+
+    let table = null;
+    $(document).ready(function() {
+        table = $('#table1').DataTable( {
+            order: [
+                [0,'DESC']
+            ],
+            processing: true,
+            serverSide: true,
+            ajax: '{{route('front.fetch.forms',[0,0,0])}}',
+            columns: [
+                {data: 'name'},
+                {data: 'creator'},
+                {data: 'e_mail'},
+                {data: 'phone_num'},
+                {data: 'delete'}
+            ],
+            "language":{
+                "url": "//cdn.datatables.net/plug-ins/1.11.1/i18n/tr.json"
+            }
+        } );
+    } );
 
 </script>
 
