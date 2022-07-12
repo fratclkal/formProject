@@ -132,13 +132,13 @@
                                             </div>
                                             <div class="col-md-8 form-group">
                                                 <div class="form-check">
-                                                    <input @if($form->payment_type != 1) checked @endif class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input disabled @if($form->payment_type != 1) checked @endif class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                         Kredi Kartı
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input @if($form->payment_type == 1) checked @endif class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                                    <input disabled @if($form->payment_type == 1) checked @endif class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                         Nakit
                                                     </label>

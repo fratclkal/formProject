@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
+use App\Models\File;
 
 class PanelUserController extends Controller
 {
@@ -35,7 +36,7 @@ class PanelUserController extends Controller
     function update(Request $request){
         $request->validate([
             'user_id' => ['required', 'exists:users,id'],
-            'email' => ['required', 'email', 'unique:users,email', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email,'.$request->user_id, 'max:255'],
             'password' => ['nullable','confirmed'],
             'name' => ['required', 'string', 'max:255'],
         ]);

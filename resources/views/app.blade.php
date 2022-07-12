@@ -71,10 +71,10 @@
     <div id="main">
 
         <div style="width: 100%; display: flex; justify-content: end;">
-            <form action="">
-                @csrf
-                <input value="Logout" type="submit" class="btn btn-danger"/>
-            </form>
+
+
+            <a href="{{route('logout')}}" class="btn btn-danger">Çıkış</a>
+
         </div>
 
         <header class="mb-3">

@@ -296,7 +296,7 @@
             Swal.fire({
                 icon: "warning",
                 title:"Emin misiniz?",
-                html: "Bu kullanıcıyı istediğinize emin misiniz?",
+                html: "Bu kullanıcıyı silmek istediğinize emin misiniz?",
                 showConfirmButton: true,
                 showCancelButton: true,
                 confirmButtonText: "Onayla",

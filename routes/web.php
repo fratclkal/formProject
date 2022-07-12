@@ -36,7 +36,7 @@ Route::group(['middleware' => 'is_former'], function (){
 
 
 Route::group(['prefix' => 'panel', 'middleware' => 'admin'], function (){
-    Route::get('/form/{id}', [PanelFormsController::class, 'show'])->name('panel.forms.show');
+
 
     Route::get('/', [PanelController::class,'app'])->name('panel');
     Route::get('/listUsers', [PanelController::class,'listUsers'])->name('listUsers');
@@ -48,6 +48,12 @@ Route::group(['prefix' => 'panel', 'middleware' => 'admin'], function (){
     Route::post('/delete-user', [PanelUserController::class, 'delete'])->name('panel.delete_user');
 
 
+    Route::group(['prefix' => 'forms'], function(){
+        Route::get('/form/{id}', [PanelFormsController::class, 'show'])->name('panel.forms.show');
+        Route::get('/list', [PanelFormsController::class,'listForms'])->name('listForms');
+        Route::get('/fetch/{user_id}/{start_date}/{end_date}', [PanelFormsController::class,'fetch'])->name('panel.fetch.forms');
+        Route::post('/delete', [PanelFormsController::class, 'delete'])->name('panel.delete.form');
+    });
 
 
 
