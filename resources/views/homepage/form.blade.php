@@ -274,7 +274,7 @@
                     error: function (data){
                         Swal.fire({
                             icon: "error",
-                            title:"Hata!",
+                            title:"Boş girdi bırakmayınız!",
                             html: "<div id=\"validation-errors\"></div>",
                             showConfirmButton: true,
                             confirmButtonText: "Tamam"

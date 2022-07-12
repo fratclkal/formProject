@@ -37,6 +37,11 @@ class FormController extends Controller
             'images.*' => ['required', 'image', 'max:2048', 'mimes:jpg,png']
         ]);
 
+        $files = $request->file('images');
+        if(count($files) == 0){
+            return response('hata');
+        }
+
         $form = new Form();
         $form->user_id = Auth::id();
         $form->name = $request->name;
@@ -54,6 +59,7 @@ class FormController extends Controller
         $form->save();
 
         if ($request->hasFile('images')) {
+
 
             $files = $request->file('images');
 
