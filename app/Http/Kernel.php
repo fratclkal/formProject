@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsNotAuth;
 use App\Http\Middleware\IsFormer;
+use App\Http\Middleware\isForm;
 
 class Kernel extends HttpKernel
 {
