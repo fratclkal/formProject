@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('is_form')->get('/forms', function (Request $request) {
+Route::middleware('is_form')->get('/forms7a00c8b60d6728a8e4bd0668492a93c5', function (Request $request) {
     return $request->user();
 });
