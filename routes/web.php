@@ -32,6 +32,7 @@ Route::group(['middleware' => 'is_not_auth'], function (){
 
 Route::group(['middleware' => 'is_former'], function (){
     Route::get('/form', [FormController::class,'index'])->name('index');
+    Route::post('/form-create', [FormController::class,'createForm'])->name('create.form');
 });
 
 

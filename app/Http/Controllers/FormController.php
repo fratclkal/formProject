@@ -3,33 +3,93 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Form;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use App\Models\File;
 
 class FormController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         return view('homepage.login');
     }
 
-    public function index(){
+    public function index()
+    {
         return view('homepage.form');
     }
 
-    public function createForm(Request $request){
-        $request -> validate([
+    public function createForm(Request $request)
+    {
+        $request->validate([
             'name' => 'required | max:255',
             'sur_name' => 'required | max:255',
-            'tc_no' => 'required | string | digits | min:11 | max:11',
+            'tc_no' => 'required | string | digits:11',
             'e_mail' => 'required | string | max:255 |',
-            'phone_num' => 'required | digits',
+            'phone_num' => 'required | numeric',
             'kvkk' => 'required | in:1,0',
             'kullanim' => 'required | in:1,0',
             'start_date' => 'required | date',
             'end_date' => 'required | date',
-            'price' => 'required | string | digits',
+            'price' => 'required | string | numeric',
             'payment_type' => 'required | in:1,0',
             'images.*' => ['image', 'max:2048', 'mimes:jpg,png']
         ]);
 
+        $form = new Form();
+        $form->user_id = Auth::id();
+        $form->name = $request->name;
+        $form->sur_name = $request->sur_name;
+        $form->tc_no = $request->tc_no;
+        $form->e_mail = $request->e_mail;
+        $form->phone_num = $request->phone_num;
+        $form->kvkk = $request->kvkk;
+        $form->kullanim = $request->kullanim;
+        $form->start_date = $request->start_date;
+        $form->end_date = $request->end_date;
+        $form->price = $request->price;
+        $form->payment_type = $request->payment_type;
 
+        $form->save();
+
+        if ($request->hasFile('images')) {
+
+            $files = $request->file('images');
+
+            $file_create_arrays = [];
+
+            foreach ($files as $file) {
+
+                if (strlen($file->getClientOriginalName()) > 9) {
+                    $start = strlen($file->getClientOriginalName()) - 9;
+                } else {
+                    $start = 0;
+                }
+
+
+                $filename = 'forms/form_images/'.date('Y-m-d').'/'.time().Auth::id().substr($file->getClientOriginalName(),
+                        $start);
+                Storage::put(
+                    $filename,
+                    file_get_contents($file->getRealPath())
+                );
+                $file_create_arrays[] = [
+                    'form_id' => $form->id,
+                    'path' => $filename,
+                ];
+
+            }
+
+            foreach ($file_create_arrays as $arr){
+                File::create($arr);
+            }
+
+
+
+
+        }
+
+        return response()->json(['success' => true]);
     }
 }
