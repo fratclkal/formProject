@@ -6,6 +6,13 @@
     </div>
 
 @endsection
+@section('style')
+    <style>
+        table,.card{
+            overflow: auto;
+        }
+    </style>
+@endsection
 @section('content')
 
     <section class="section">

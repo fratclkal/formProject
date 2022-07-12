@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="{{asset('dist/assets/css/pages/fontawesome.css')}}">
     <link rel="stylesheet" href="{{asset('dist/assets/css/pages/datatables.css')}}">
+    @yield('style')
 
 </head>
 
