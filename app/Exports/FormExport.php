@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Form;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use App\Models\User;
 
 class FormExport implements FromCollection, WithHeadings
 {
@@ -33,6 +34,8 @@ class FormExport implements FromCollection, WithHeadings
         $collection = $forms->get();
         $i = 0;
         foreach ($collection as $item){
+
+            $collection[$i]->user_id = User::where('id', $collection[$i]->user_id)->first()->name;
 
             if ($collection[$i]->payment_type == 0){
                 $collection[$i]->payment_type = '0';
