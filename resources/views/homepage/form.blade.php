@@ -91,7 +91,7 @@
                                                     <li class="d-inline-block me-2 mb-1">
                                                         <div class="form-check">
                                                             <div class="custom-control custom-checkbox">
-                                                                <input value="1" type="checkbox" class="form-check-input form-check-success" checked="" name="kvkk" id="customColorCheck3">
+                                                                <input value="1" type="checkbox" class="form-check-input form-check-success" name="kvkk" id="customColorCheck3">
                                                                 <label class="form-check-label" for="customColorCheck3"></label>KVKK bilgisi için tıklayınız.
                                                             </div>
                                                         </div>
@@ -106,7 +106,7 @@
                                                     <li class="d-inline-block me-2 mb-1">
                                                         <div class="form-check">
                                                             <div class="custom-control custom-checkbox">
-                                                                <input value="1" type="checkbox" class="form-check-input form-check-success" checked="" name="kullanim" id="customColorCheck3">
+                                                                <input value="1" type="checkbox" class="form-check-input form-check-success" name="kullanim" id="customColorCheck3">
                                                                 <label class="form-check-label" for="customColorCheck3"></label>Kullanım şartlarını kabul ediyorum.
                                                             </div>
                                                         </div>
@@ -143,8 +143,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" value="1" type="radio" name="payment_type" id="flexRadioDefault2"
-                                                           checked>
+                                                    <input class="form-check-input" value="1" type="radio" name="payment_type" id="flexRadioDefault2" checked>
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                         Nakit
                                                     </label>

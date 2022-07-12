@@ -34,7 +34,7 @@ class FormController extends Controller
             'end_date' => 'required | date',
             'price' => 'required | string | numeric',
             'payment_type' => 'required | in:1,0',
-            'images.*' => ['image', 'max:2048', 'mimes:jpg,png']
+            'images.*' => ['required', 'image', 'max:2048', 'mimes:jpg,png']
         ]);
 
         $form = new Form();
