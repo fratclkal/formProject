@@ -20,6 +20,12 @@
 <div id="app">
 
     <div id="main">
+        <div style="width: 100%; display: flex; justify-content: end;">
+
+
+            <a href="{{route('logout')}}" class="btn btn-danger">Çıkış</a>
+
+        </div>
         <div class="page-heading">
             <h3>Form</h3>
         </div>
@@ -61,7 +67,7 @@
                                                 <label for="">Profil Görsel</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input class="form-control" name="images[]" multiple type="file" id="formFile">
+                                                <input class="form-control" name="images[]" multiple type="file" id="formFile" required>
                                             </div>
                                             <div class="col-md-4">
                                                 <label>E-Posta</label>
