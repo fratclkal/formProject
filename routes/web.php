@@ -54,6 +54,7 @@ Route::group(['prefix' => 'panel', 'middleware' => 'admin'], function (){
         Route::get('/list', [PanelFormsController::class,'listForms'])->name('listForms');
         Route::get('/fetch/{user_id}/{start_date}/{end_date}', [PanelFormsController::class,'fetch'])->name('panel.fetch.forms');
         Route::post('/delete', [PanelFormsController::class, 'delete'])->name('panel.delete.form');
+        Route::get('/excel/{user_id}/{start_date}/{end_date}', [PanelFormsController::class,'download_excel'])->name('panel.excel.forms');
     });
 
 
