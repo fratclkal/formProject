@@ -58,6 +58,9 @@
                                                 <input type="text" disabled value="{{$form->tc_no}}" id="contact-info" class="form-control" name="fname"
                                                        placeholder="T.C. Kimlik Numarası">
                                             </div>
+                                            <div class="col-md-4">
+                                                <label>Profil Görsel</label>
+                                            </div>
                                             <div class="col-12 form-group">
                                                 <div class="row">
                                                     @foreach($form->getImages as $image)
