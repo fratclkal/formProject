@@ -32,6 +32,9 @@
                     <div class="form-group col-3 justify-content-start">
                         <button onclick="filter()" class="btn btn-primary">Filtrele</button>
                     </div>
+                    <div class="form-group col-3 justify-content-start">
+                        <button onclick="excel()" class="btn btn-primary">Excel Çıkart</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -159,6 +162,35 @@
             table.ajax.url(url);
 
             table.ajax.reload();
+
+        }
+
+        function excel(){
+
+            let url = '{{route('panel.excel.forms',[0,0,0])}}';
+
+            url = url.replace('/0/0/0', '');
+
+
+            if($('#select_creator').val() != 'Oluşturucu'){
+                url = url+'/'+$('#select_creator').val();
+            }else{
+                url = url+'/0';
+            }
+
+            if($('#date_start').val() != ''){
+                url = url+'/'+$('#date_start').val();
+            }else{
+                url = url+'/0';
+            }
+
+            if($('#date_end').val() != ''){
+                url = url+'/'+$('#date_end').val();
+            }else{
+                url = url+'/0';
+            }
+
+            window.open(url, '_blank');
 
         }
 

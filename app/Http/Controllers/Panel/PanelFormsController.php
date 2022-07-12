@@ -9,12 +9,19 @@ use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\FormExport;
 
 class PanelFormsController extends Controller
 {
     public function listForms(){
         $users = User::where('id', '!=', Auth::id())->get();
         return view('panel.listForms', compact('users'));
+    }
+
+    public function download_excel($user_id, $start_date, $end_date){
+        return Excel::download(new FormExport($user_id, $start_date, $end_date), 'forms.xlsx');
+
     }
 
     function show($id){
