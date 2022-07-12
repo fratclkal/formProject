@@ -58,11 +58,14 @@
                                                 <input type="text" disabled value="{{$form->tc_no}}" id="contact-info" class="form-control" name="fname"
                                                        placeholder="T.C. Kimlik Numarası">
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="">Profil Görsel</label>
-                                            </div>
-                                            <div class="col-md-8 form-group">
-                                                <input class="form-control" type="file" id="formFile">
+                                            <div class="col-12 form-group">
+                                                <div class="row">
+                                                    @foreach($form->getImages as $image)
+                                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                                            <img class="mh-100 mw-100" src="{{asset('storage/'.$image->path)}}"/>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label>E-Posta</label>

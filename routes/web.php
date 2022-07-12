@@ -60,4 +60,5 @@ Route::group(['prefix' => 'panel', 'middleware' => 'admin'], function (){
 
 });
 
+
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

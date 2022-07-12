@@ -70,7 +70,7 @@ class FormController extends Controller
 
                 $filename = 'forms/form_images/'.date('Y-m-d').'/'.time().Auth::id().substr($file->getClientOriginalName(),
                         $start);
-                Storage::put(
+                Storage::put('/public/'.
                     $filename,
                     file_get_contents($file->getRealPath())
                 );
