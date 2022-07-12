@@ -5,6 +5,7 @@ use App\Http\Controllers\Panel\PanelUserController;
 use App\Http\Controllers\PanelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Panel\PanelFormsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,14 +36,21 @@ Route::group(['middleware' => 'is_former'], function (){
 
 
 Route::group(['prefix' => 'panel', 'middleware' => 'admin'], function (){
+    Route::get('/form/{id}', [PanelFormsController::class, 'show'])->name('panel.forms.show');
+
     Route::get('/', [PanelController::class,'app'])->name('panel');
     Route::get('/listUsers', [PanelController::class,'listUsers'])->name('listUsers');
-    Route::get('/listForms', [PanelController::class,'listForms'])->name('listForms');
+    Route::get('/listForms', [PanelFormsController::class,'listForms'])->name('listForms');
     Route::get('/fetchUsers', [PanelUserController::class,'fetch'])->name('panel.fetch.users');
     Route::post('/create-user', [PanelUserController::class, 'create'])->name('panel.create_user');
     Route::post('/update-user', [PanelUserController::class, 'update'])->name('panel.update_user');
     Route::post('/get-user', [PanelUserController::class, 'get'])->name('panel.get_user');
     Route::post('/delete-user', [PanelUserController::class, 'delete'])->name('panel.delete_user');
+
+
+
+
+
 });
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
