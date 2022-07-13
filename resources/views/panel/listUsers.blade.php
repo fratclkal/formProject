@@ -1,8 +1,18 @@
 @extends('app')
+@section('head')
+    Kullanıcı Listesi
+@endsection
 @section('title')
     <div class="page-heading">
         <h3>Kullanıcı Listesi</h3>
     </div>
+@endsection
+@section('style')
+    <style>
+        table,.card{
+            overflow: auto;
+        }
+    </style>
 @endsection
 @section('content')
 
@@ -22,6 +32,7 @@
                     <tr>
                         <th>#</th>
                         <th>Kullanıcı Adı</th>
+                        <th>E-mail</th>
                         <th>Seçenekler</th>
                         <th></th>
                     </tr>
@@ -72,12 +83,10 @@
                 </form>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">KAPAT</span>
+                            Kapat
                         </button>
                         <button onclick="create()" type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">KAYDET</span>
+                            Kaydet
                         </button>
                     </div>
 
@@ -119,12 +128,10 @@
                 </form>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                            <i class="bx bx-x d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Kapat</span>
+                            Kapat
                         </button>
                         <button onclick="updatePost()" type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Kaydet</span>
+                            Kaydet
                         </button>
                     </div>
 

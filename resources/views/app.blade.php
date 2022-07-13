@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{csrf_token()}}">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>@yield('head')</title>
 
     <link rel="stylesheet" href="{{asset('dist/assets/css/main/app.css')}}">
     <link rel="stylesheet" href="{{asset('dist/assets/css/main/app-dark.css')}}">
@@ -71,18 +71,20 @@
     </div>
     <div id="main">
 
-        <div style="width: 100%; display: flex; justify-content: end;">
 
-
-            <a href="{{route('logout')}}" class="btn btn-danger">Çıkış</a>
-
-        </div>
 
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
                 <i class="bi bi-justify fs-3"></i>
             </a>
         </header>
+
+        <div style="width: 100%; display: flex; justify-content: end;">
+
+
+            <a href="{{route('logout')}}" class="btn btn-danger">Çıkış</a>
+
+        </div>
 
         @yield('title')
         <div class="page-content">

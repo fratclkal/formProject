@@ -1,10 +1,12 @@
 @extends('app')
+@section('head')
+    Form Listesi
+@endsection
 @section('title')
 
     <div class="page-heading">
         <h3>Form Listesi</h3>
     </div>
-
 @endsection
 @section('style')
     <style>
@@ -13,6 +15,8 @@
         }
     </style>
 @endsection
+
+
 @section('content')
 
     <section class="section">
