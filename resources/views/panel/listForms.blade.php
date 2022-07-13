@@ -77,7 +77,7 @@
 
 @endsection
 @section('js')
-    <script src="{{asset('dist/assets/js/app.js')}}"></script>
+
 
     <script src="{{asset('dist/assets/js/extensions/datatables.js')}}"></script>
 
