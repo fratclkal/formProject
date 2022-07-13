@@ -194,6 +194,12 @@
                                 showConfirmButton: true,
                                 confirmButtonText: "Tamam"
                             });
+
+                            var inputs = $('#create_form :input');
+                            $.each(inputs, function(index, value) {
+                                $(value).val('');
+                            });
+
                             $('#createModal').modal('toggle');
                             table.ajax.reload();
                         },
