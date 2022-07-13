@@ -54,7 +54,7 @@ class PanelUserController extends Controller
     }
 
     public function fetch(){
-        $users = User::query()->where('id', '!=', Auth::id());
+        $users = User::query()->where('role', '!=', 'Admin');
 
         return DataTables::of($users)->addColumn('delete', function ($data){
             return '<button class="btn btn-primary mr-1" onclick="update('.$data->id.')">Güncelle</button>'.
