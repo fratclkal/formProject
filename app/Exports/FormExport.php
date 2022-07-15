@@ -32,14 +32,21 @@ class FormExport implements FromCollection, WithHeadings
         }
 
         $collection = $forms->get();
+        $new_collection = collect([]);
         $i = 0;
         foreach ($collection as $item){
 
             $collection[$i]->user_id = User::where('id', $collection[$i]->user_id)->first()->name;
 
             if ($collection[$i]->payment_type == 0){
-                $collection[$i]->payment_type = '0';
+                $collection[$i]->payment_type = 'Kredi Kartı';
+            }else{
+                $collection[$i]->payment_type = 'Nakit';
             }
+
+            unset($collection[$i]->updated_at);
+            unset($collection[$i]->created_at);
+            unset($collection[$i]->deleted_at);
 
             $i++;
         }
@@ -56,6 +63,6 @@ class FormExport implements FromCollection, WithHeadings
 
     public function headings() : array
     {
-        return ['ID', 'Oluşturucu', 'İsim', 'Soyisim', 'TC', 'Email', 'Telefon Numarası', 'KVKK', 'Kullanım Şartları', 'Başlangıç Tarihi', 'Bitiş Tarihi', 'Ücret', 'Ödeme Tipi (0 - Kredi Kartı)', 'Silinme Tarihi', 'Oluşturma Tarihi', 'Güncellenme Tarihi'];
+        return ['ID', 'Oluşturucu', 'İsim', 'Soyisim', 'TC', 'Email', 'Telefon Numarası', 'KVKK', 'Kullanım Şartları', 'Başlangıç Tarihi', 'Bitiş Tarihi', 'Ücret', 'Ödeme Tipi'];
     }
 }
