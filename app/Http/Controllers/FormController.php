@@ -27,7 +27,7 @@ class FormController extends Controller
             'name' => 'required | max:255',
             'sur_name' => 'required | max:255',
             'tc_no' => 'required | string | digits:11',
-            'e_mail' => 'required | string | max:255 |',
+            'e_mail' => 'required | string | max:255 | email',
             'phone_num' => 'required | numeric',
             'kvkk' => 'required | in:1,0',
             'kullanim' => 'required | in:1,0',
