@@ -32,14 +32,47 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-lg-6 col-md-12">
-                        <label for="date_start">Başlangıç Tarihi</label>
-                        <input type="datetime-local" id="date_start" class="form-control">
+
+                    <div class="col-12">
+                        <h5>Oluşturulma Tarihine Göre</h5>
+                        <div class="row">
+                            <div class="form-group col-lg-6 col-md-12">
+                                <label for="date_start">Başlangıç Tarihi</label>
+                                <input type="datetime-local" id="date_start" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-12">
+                                <label for="date_end">Bitiş Tarihi</label>
+                                <input type="datetime-local" id="date_end" class="form-control">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-lg-6 col-md-12">
-                        <label for="date_end">Bitiş Tarihi</label>
-                        <input type="datetime-local" id="date_end" class="form-control">
+                    <div class="col-12">
+                        <h5>Başlangıç Tarihine Göre</h5>
+                        <div class="row">
+                            <div class="form-group col-lg-6 col-md-12">
+                                <label for="start_date_start">Başlangıç Tarihi</label>
+                                <input type="datetime-local" id="start_date_start" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-12">
+                                <label for="start_date_end">Bitiş Tarihi</label>
+                                <input type="datetime-local" id="start_date_end" class="form-control">
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-12">
+                        <h5>Bitiş Tarihine Göre</h5>
+                        <div class="row">
+                            <div class="form-group col-lg-6 col-md-12">
+                                <label for="end_date_start">Başlangıç Tarihi</label>
+                                <input type="datetime-local" id="end_date_start" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-12">
+                                <label for="end_date_end">Bitiş Tarihi</label>
+                                <input type="datetime-local" id="end_date_end" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group col-3 justify-content-start">
                         <button onclick="filter()" class="btn btn-primary">Filtrele</button>
                     </div>
@@ -51,7 +84,9 @@
         </div>
         <div class="card">
             <div class="card-header">
-                Formlar
+                <span class="justify-content-start">Formlar</span>
+                <br><br>
+                <span class="justify-content-end">Toplam Ücret: <span class="total"></span></span>
             </div>
             <div class="card-body">
                 <table class="table" id="table1">
@@ -146,9 +181,9 @@
 
         function filter(){
 
-            let url = '{{route('panel.fetch.forms',[0,0,0])}}';
+            let url = '{{route('panel.fetch.forms',[0,0,0,0,0,0,0])}}';
 
-            url = url.replace('/0/0/0', '');
+            url = url.replace('/0/0/0/0/0/0/0', '');
 
 
             if($('#select_creator').val() != 'Oluşturucu'){
@@ -168,11 +203,51 @@
             }else{
                 url = url+'/0';
             }
+
+            if($('#start_date_start').val() != ''){
+                url = url+'/'+$('#start_date_start').val();
+            }else{
+                url = url+'/0';
+            }
+
+            if($('#start_date_end').val() != ''){
+                url = url+'/'+$('#start_date_end').val();
+            }else{
+                url = url+'/0';
+            }
+
+            if($('#end_date_start').val() != ''){
+                url = url+'/'+$('#end_date_start').val();
+            }else{
+                url = url+'/0';
+            }
+
+            if($('#end_date_end').val() != ''){
+                url = url+'/'+$('#end_date_end').val();
+            }else{
+                url = url+'/0';
+            }
+
             console.log(url);
 
             table.ajax.url(url);
 
             table.ajax.reload();
+
+            let formData = new FormData();
+            formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function (data){
+                    $('.total').html(data.total_price);
+                }
+            });
 
         }
 
@@ -213,7 +288,7 @@
                 ],
                 processing: true,
                 serverSide: true,
-                ajax: '{{route('panel.fetch.forms',[0,0,0])}}',
+                ajax: '{{route('panel.fetch.forms',[0,0,0,0,0,0,0])}}',
                 columns: [
                     {data: 'name'},
                     {data: 'creator'},
@@ -225,6 +300,8 @@
                     "url": "//cdn.datatables.net/plug-ins/1.11.1/i18n/tr.json"
                 }
             } );
+
+            filter();
         } );
     </script>
 @endsection
