@@ -61,7 +61,7 @@
                                             </div>
                                             <div class="col-md-8 form-group">
                                                 <input type="text" id="contact-info" class="form-control" name="tc_no"
-                                                       placeholder="T.C. Kimlik Numarası">
+                                                       placeholder="T.C. Kimlik Numarası" maxlength="11">
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="">Profil Görsel</label>
@@ -74,14 +74,14 @@
                                             </div>
                                             <div class="col-md-8 form-group">
                                                 <input type="email" id="first-name" class="form-control" name="e_mail"
-                                                       placeholder="E-Posta">
+                                                       placeholder="E-Posta" maxlength="30">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Mobil Tel</label>
                                             </div>
                                             <div class="col-md-8 form-group">
                                                 <input type="text" id="first-name" class="form-control" name="phone_num"
-                                                       placeholder="Mobil Tel">
+                                                       placeholder="Mobil Tel" maxlength="10">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>KVKK Onay</label>
