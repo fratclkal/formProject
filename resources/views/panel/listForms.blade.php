@@ -93,7 +93,7 @@
                     <thead>
                     <tr>
                         <th>Ad Soyad</th>
-                        <th>Oluşturan</th>
+                        <th>Form No</th>
                         <th>E-Posta</th>
                         <th>Mobil Tel</th>
                         <th>Seçenekler</th>
@@ -291,7 +291,7 @@
                 ajax: '{{route('panel.fetch.forms',[0,0,0,0,0,0,0])}}',
                 columns: [
                     {data: 'name'},
-                    {data: 'creator'},
+                    {data: 'id'},
                     {data: 'e_mail'},
                     {data: 'phone_num'},
                     {data: 'delete'}

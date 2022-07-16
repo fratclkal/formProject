@@ -182,7 +182,7 @@
                                     <thead>
                                     <tr>
                                         <th>Ad Soyad</th>
-                                        <th>Oluşturucu</th>
+                                        <th>Form No</th>
                                         <th>Mobil Tel</th>
                                         <th>E-posta</th>
                                         <th>Detay</th>
@@ -559,7 +559,7 @@
             ajax: '{{route('front.fetch.forms',[0,0,0])}}',
             columns: [
                 {data: 'name'},
-                {data: 'creator'},
+                {data: 'id'},
                 {data: 'e_mail'},
                 {data: 'phone_num'},
                 {data: 'delete'}
