@@ -175,7 +175,7 @@
                         <div class="card-header">
                             <h4 class="card-title">Formlar</h4>
                         </div>
-                        <div class="card-content">
+                        <div class="card-body">
                             <!-- table hover -->
                             <div class="table-responsive">
                                 <table id="table1" class="table table-hover mb-0">
@@ -528,6 +528,16 @@
                             showConfirmButton: true,
                             confirmButtonText: "Tamam"
                         });
+
+                        var inputs = $('#create_form :input');
+                        $.each(inputs, function(index, value) {
+                            if($(value).attr('type')!='checkbox' && $(value).attr('type') != 'radio'){
+                                $(value).val('');
+                            }else{
+                                $(value).prop('checked', false);
+                            }
+                        });
+
                         $('#createModal').modal('toggle');
                         table.ajax.reload();
                     },
@@ -565,7 +575,7 @@
                 {data: 'delete'}
             ],
             "language":{
-                "url": "//cdn.datatables.net/plug-ins/1.11.1/i18n/tr.json"
+                "url": "/Turkish.json"
             }
         } );
     } );

@@ -297,7 +297,7 @@
                     {data: 'delete'}
                 ],
                 "language":{
-                    "url": "//cdn.datatables.net/plug-ins/1.11.1/i18n/tr.json"
+                        "url": "//cdn.datatables.net/plug-ins/1.11.1/i18n/tr.json"
                 }
             } );
 
