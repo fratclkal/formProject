@@ -74,13 +74,11 @@ class FormController extends Controller
                     $start = 0;
                 }
 
+                $path = 'forms/form_images/'.date('Y-m-d').'/';
+                $filename = time().Auth::id().substr($file->getClientOriginalName(), $start);
+                $file->move(public_path() . '/'.$path, $filename);
+                $filename = $path . $filename;
 
-                $filename = 'forms/form_images/'.date('Y-m-d').'/'.time().Auth::id().substr($file->getClientOriginalName(),
-                        $start);
-                Storage::put('/public/'.
-                    $filename,
-                    file_get_contents($file->getRealPath())
-                );
                 $file_create_arrays[] = [
                     'form_id' => $form->id,
                     'path' => $filename,

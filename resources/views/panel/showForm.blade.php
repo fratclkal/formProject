@@ -69,7 +69,7 @@
                                                 <div class="row">
                                                     @foreach($form->getImages as $image)
                                                         <div class="col-lg-3 col-md-6 col-sm-12">
-                                                            <img class="mh-100 mw-100" src="{{asset('storage/'.$image->path)}}"/>
+                                                            <img class="mh-100 mw-100" src="{{asset($image->path)}}"/>
                                                         </div>
                                                     @endforeach
                                                 </div>
