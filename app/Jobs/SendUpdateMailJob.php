@@ -61,9 +61,5 @@ class SendUpdateMailJob implements ShouldQueue
 
 
 
-        return true;
-
-
-
     }
 }
