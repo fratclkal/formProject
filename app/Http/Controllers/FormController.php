@@ -116,7 +116,24 @@ class FormController extends Controller
     public function show($id){
         $form = Form::where('id', $id)->first();
         if (Auth::id() == $form->user_id){
-            return view('panel.showForm', compact('form'));
+            return view('homepage.updateForm', compact('form'));
+        }
+    }
+
+    public function update(Request $request){
+        $request->validate([
+            'form_id' => 'required|exists:forms,id',
+            'end_date' => 'nullable | date',
+            'price' => 'nullable | string | numeric',
+            'payment_type' => 'required | in:2,1,0',
+        ]);
+        $form = Form::where('id', $request->form_id)->first();
+        if ($form->user_id == Auth::id()){
+            $form->end_date = $request->end_date;
+            $form->price = $request->price;
+            $form->payment_type = $request->payment_type;
+            $form->save();
+            return response()->json(['success' => true]);
         }
     }
 }

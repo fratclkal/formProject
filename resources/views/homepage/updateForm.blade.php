@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>Form Detay</title>
 
     <meta name="csrf-token" content="{{csrf_token()}}">
     <link rel="stylesheet" href="{{asset('dist/assets/css/main/app.css')}}">
@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="{{asset('dist/assets/images/logo/favicon.png')}}" type="image/png">
 
     <link rel="stylesheet" href="{{asset('dist/assets/css/shared/iconly.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous">
 
 </head>
 
@@ -20,12 +21,6 @@
 <div id="app">
 
     <div id="main">
-        <div style="width: 100%; display: flex; justify-content: end;">
-
-
-            <a href="{{route('logout')}}" class="btn btn-danger">Çıkış</a>
-
-        </div>
         <div class="page-heading">
             <h3>Form</h3>
         </div>
@@ -35,53 +30,65 @@
                 <div class="col-md-8 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Form</h4>
+                            @if(\Illuminate\Support\Facades\Auth::user()->role == 'Admin')
+                                <a href="{{route('listForms')}}" class="btn btn-primary d-inline"><i class="fa fa-angle-left"></i></a>
+                            @else
+                                <a href="{{route('index')}}" class="btn btn-primary d-inline"><i class="fa fa-angle-left"></i></a>
+                            @endif
+                            <h4 class="card-title d-inline">Form</h4>
                         </div>
                         <div class="card-content">
                             <div class="card-body">
                                 <form id="create_form" class="form form-horizontal">
                                     <div class="form-body">
+                                        <input type="hidden" value="{{$form->id}}" name="form_id">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label>Ad</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="text" id="first-name" class="form-control" name="name"
+                                                <input disabled type="text" value="{{$form->name}}" id="first-name" class="form-control" name="fname"
                                                        placeholder="Ad">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Soyad</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="text" id="email-id" class="form-control" name="sur_name"
+                                                <input disabled value="{{$form->sur_name}}" type="text" id="email-id" class="form-control" name="fname"
                                                        placeholder="Soyad">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>T.C. Kimlik Numarası</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="text" id="contact-info" class="form-control" name="tc_no"
-                                                       placeholder="T.C. Kimlik Numarası" maxlength="11">
+                                                <input type="text" disabled value="{{$form->tc_no}}" id="contact-info" class="form-control" name="fname"
+                                                       placeholder="T.C. Kimlik Numarası">
                                             </div>
                                             <div class="col-md-4">
-                                                <label for="">Profil Görsel</label>
+                                                <label>Profil Görsel</label>
                                             </div>
-                                            <div class="col-md-8 form-group">
-                                                <input class="form-control" name="images[]" multiple type="file" id="formFile" required>
+                                            <div class="col-12 form-group">
+                                                <div class="row">
+                                                    @foreach($form->getImages as $image)
+                                                        <div class="col-lg-3 col-md-6 col-sm-12">
+                                                            <img class="mh-100 mw-100" src="{{asset($image->path)}}"/>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label>E-Posta</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="email" id="first-name" class="form-control" name="e_mail"
-                                                       placeholder="E-Posta" maxlength="30">
+                                                <input disabled value="{{$form->e_mail}}" type="email" id="first-name" class="form-control" name="fname"
+                                                       placeholder="E-Posta">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Mobil Tel</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="text" id="first-name" class="form-control" name="phone_num"
-                                                       placeholder="Mobil Tel" maxlength="10">
+                                                <input disabled value="{{$form->phone_num}}" type="text" id="first-name" class="form-control" name="fname"
+                                                       placeholder="Mobil Tel">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>KVKK Onay</label>
@@ -91,7 +98,7 @@
                                                     <li class="d-inline-block me-2 mb-1">
                                                         <div class="form-check">
                                                             <div class="custom-control custom-checkbox">
-                                                                <input value="1" type="checkbox" class="form-check-input form-check-success" name="kvkk" id="customColorCheck3">
+                                                                <input disabled @if($form->kvkk == 1) checked @endif type="checkbox" class="form-check-input form-check-success" name="customCheck" id="customColorCheck3">
                                                                 <label class="form-check-label" for="customColorCheck3"></label>KVKK bilgisi için
                                                                 <a href="" data-bs-toggle="modal"
                                                                    data-bs-target="#exampleModalLong1">tıklayınız</a>.
@@ -108,7 +115,7 @@
                                                     <li class="d-inline-block me-2 mb-1">
                                                         <div class="form-check">
                                                             <div class="custom-control custom-checkbox">
-                                                                <input value="1" type="checkbox" class="form-check-input form-check-success" name="kullanim" id="customColorCheck3">
+                                                                <input disabled @if($form->kullanim == 1) checked @endif type="checkbox" class="form-check-input form-check-success" name="customCheck" id="customColorCheck3">
                                                                 <label class="form-check-label" for="customColorCheck3"></label>
                                                                 <a href="" data-bs-toggle="modal"
                                                                    data-bs-target="#exampleModalLong">Kullanım şartlarını</a> kabul ediyorum.
@@ -121,19 +128,19 @@
                                                 <label>Başlangıç Zamanı</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="datetime-local" name="start_date" class="form-control">
+                                                <input disabled value="{{substr($form->start_date, 0,10)}}T{{substr($form->start_date, 11,5)}}" type="datetime-local" class="form-control">
                                             </div>
                                             <div class="col-md-4">
-                                                <label>Başlangıç Zamanı</label>
+                                                <label>Bitiş Zamanı</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="datetime-local" name="end_date" class="form-control">
+                                                <input value="{{substr($form->end_date, 0,10)}}T{{substr($form->end_date, 11,5)}}" type="datetime-local" name="end_date" class="form-control">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Ücret</label>
                                             </div>
                                             <div class="col-md-8 form-group">
-                                                <input type="text" id="first-name" class="form-control" name="price"
+                                                <input value="{{$form->price}}" type="text" id="first-name" class="form-control" name="price"
                                                        placeholder="Ücret">
                                             </div>
                                             <div class="col-md-4">
@@ -141,62 +148,30 @@
                                             </div>
                                             <div class="col-md-8 form-group">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" value="0" type="radio" name="payment_type" id="flexRadioDefault1">
+                                                    <input @if($form->payment_type == 0) checked @endif value="0" class="form-check-input" type="radio" name="payment_type" id="flexRadioDefault1">
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                         Kredi Kartı
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" value="1" type="radio" name="payment_type" id="flexRadioDefault2" checked>
+                                                    <input @if($form->payment_type == 1) checked @endif value="1" class="form-check-input" type="radio" name="payment_type" id="flexRadioDefault2">
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                         Nakit
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" value="2" type="radio" name="payment_type" id="flexRadioDefault3">
-                                                    <label class="form-check-label" for="flexRadioDefault3">
+                                                    <input @if($form->payment_type == 2) checked @endif value="2" class="form-check-input" type="radio" name="payment_type" id="flexRadioDefault2">
+                                                    <label class="form-check-label" for="flexRadioDefault2">
                                                         Ücretsiz
                                                     </label>
                                                 </div>
                                             </div>
-
-
                                             <div class="col-sm-12 d-flex justify-content-end">
-                                                <span onclick="create()" class="btn btn-primary me-1 mb-1">Kaydet</span>
+                                                <span onclick="update()" class="btn btn-primary me-1 mb-1">Kaydet</span>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="row" id="table-hover-row">
-                <div class="col-md-8 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Formlar</h4>
-                        </div>
-                        <div class="card-body">
-                            <!-- table hover -->
-                            <div class="table-responsive">
-                                <table id="table1" class="table table-hover mb-0">
-                                    <thead>
-                                    <tr>
-                                        <th>Ad Soyad</th>
-                                        <th>Form No</th>
-                                        <th>Başlangıç Zamanı</th>
-                                        <th>Bitiş Zamanı</th>
-                                        <th>İşlemler</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
@@ -505,7 +480,7 @@
         }
     });
 
-    function create(){
+    function update(){
         Swal.fire({
             icon: "warning",
             title:"Emin misiniz?",
@@ -517,7 +492,7 @@
             cancelButtonColor: "#e30d0d"
         }).then((result)=>{
             if (result.isConfirmed){
-                let url = '{{route('create.form')}}';
+                let url = '{{route('update.form')}}';
                 let formData = new FormData(document.getElementById('create_form'));
                 $.ajax({
                     type: 'POST',
@@ -535,16 +510,7 @@
                             confirmButtonText: "Tamam"
                         });
 
-                        var inputs = $('#create_form :input');
-                        $.each(inputs, function(index, value) {
-                            if($(value).attr('type')!='checkbox' && $(value).attr('type') != 'radio'){
-                                $(value).val('');
-                            }else{
-                                $(value).prop('checked', false);
-                            }
-                        });
 
-                        $('#createModal').modal('toggle');
                         table.ajax.reload();
                     },
                     error: function (data){
@@ -563,29 +529,6 @@
             }
         });
     }
-
-    let table = null;
-    $(document).ready(function() {
-        table = $('#table1').DataTable( {
-            order: [
-                [0,'DESC']
-            ],
-            processing: true,
-            serverSide: true,
-            ajax: '{{route('front.fetch.forms',[0,0,0])}}',
-            columns: [
-                {data: 'name'},
-                {data: 'id'},
-                {data: 'start_date'},
-                {data: 'end_date'},
-                {data: 'delete'}
-            ],
-            "language":{
-                "url": "/Turkish.json"
-            }
-        } );
-    } );
-
 </script>
 
 </body>
