@@ -24,12 +24,22 @@
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-lg-12">
-                        <label for="select_creator">Oluşturucu</label>
+                        <h5>Oluşturucu</h5>
                         <select class="form-select" id="select_creator">
                             <option selected>Oluşturucu</option>
                             @foreach($users as $user)
                                 <option value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                        <h5>Ödeme Türü</h5>
+                        <select class="form-select" id="select_creator">
+                            <option selected>Ödeme Türü</option>
+
+                                <option value=""></option>
+
                         </select>
                     </div>
 

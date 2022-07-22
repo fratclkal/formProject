@@ -152,6 +152,12 @@
                                                         Nakit
                                                     </label>
                                                 </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" value="0" type="radio" name="payment_type" id="">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Ücretsiz
+                                                    </label>
+                                                </div>
                                             </div>
 
 
@@ -183,9 +189,9 @@
                                     <tr>
                                         <th>Ad Soyad</th>
                                         <th>Form No</th>
-                                        <th>Mobil Tel</th>
-                                        <th>E-posta</th>
-                                        <th>Detay</th>
+                                        <th>Başlangıç Zamanı</th>
+                                        <th>Bitiş Zamanı</th>
+                                        <th>İşlemler</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -570,8 +576,8 @@
             columns: [
                 {data: 'name'},
                 {data: 'id'},
-                {data: 'e_mail'},
-                {data: 'phone_num'},
+                {data: 'start_date'},
+                {data: 'end_date'},
                 {data: 'delete'}
             ],
             "language":{

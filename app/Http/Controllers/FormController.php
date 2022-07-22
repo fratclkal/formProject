@@ -109,7 +109,7 @@ class FormController extends Controller
                 return $data->getUser->name;
             })
             ->addColumn('delete', function ($data){
-                return '<a class="btn btn-primary mr-1" target="_blank" href="'.route('front.show.forms', $data->id).'">Gör</a> ';
+                return '<a class="btn btn-primary mr-1" target="_blank" href="'.route('front.show.forms', $data->id).'">Güncelle</a> ';
             })->rawColumns(['delete'])->make();
     }
 
