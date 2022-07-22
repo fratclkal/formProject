@@ -32,7 +32,7 @@ class FormController extends Controller
             'kvkk' => 'required | in:1,0',
             'kullanim' => 'required | in:1,0',
             'start_date' => 'required | date',
-            'end_date' => 'required | date',
+            'end_date' => 'nullable | date',
             'price' => 'required | string | numeric',
             'payment_type' => 'required | in:1,0',
             'images.*' => ['required', 'image', 'max:2048', 'mimes:jpg,png']

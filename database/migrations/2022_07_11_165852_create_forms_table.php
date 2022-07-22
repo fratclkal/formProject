@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean('kvkk')->default(0);
             $table->boolean('kullanim')->default(0);
             $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->dateTime('end_date')->nullable();
             $table->string('price');
             $table->boolean('payment_type')->default(0);
             $table->softDeletes();
