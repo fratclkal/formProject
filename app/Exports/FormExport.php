@@ -40,8 +40,10 @@ class FormExport implements FromCollection, WithHeadings
 
             if ($collection[$i]->payment_type == 0){
                 $collection[$i]->payment_type = 'Kredi Kartı';
-            }else{
+            }else if ($collection[$i]->payment_type == 1){
                 $collection[$i]->payment_type = 'Nakit';
+            }else{
+                $collection[$i]->payment_type = 'Ücretsiz';
             }
 
             unset($collection[$i]->updated_at);
