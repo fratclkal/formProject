@@ -99,7 +99,7 @@ class FormController extends Controller
     }
 
     public function fetch(){
-        $forms = Form::where('user_id', Auth::id())->orderByDesc('created_at')->get()->take(5);
+        $forms = Form::where('user_id', Auth::id())->whereNull('end_date')->orderByDesc('created_at')->get()->take(5);
 
         return DataTables::of($forms)
             ->editColumn('name', function ($data){
