@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\File;
 use Yajra\DataTables\Facades\DataTables;
+use App\Jobs\SendUpdateMailJob;
 
 class FormController extends Controller
 {
@@ -128,11 +129,13 @@ class FormController extends Controller
             'payment_type' => 'required | in:2,1,0',
         ]);
         $form = Form::where('id', $request->form_id)->first();
+
         if ($form->user_id == Auth::id()){
             $form->end_date = $request->end_date;
             $form->price = $request->price;
             $form->payment_type = $request->payment_type;
             $form->save();
+            SendUpdateMailJob::dispatch($form);
             return response()->json(['success' => true]);
         }
     }
