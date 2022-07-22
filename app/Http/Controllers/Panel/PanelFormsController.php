@@ -19,7 +19,7 @@ class PanelFormsController extends Controller
         return view('panel.listForms', compact('users'));
     }
 
-    public function total_price($user_id, $start_date, $end_date,$start_start_date,$start_end_date,$end_start_date,$end_end_date){
+    public function total_price($user_id, $start_date, $end_date,$start_start_date,$start_end_date,$end_start_date,$end_end_date,$endless,$payment_type){
         $forms = Form::query()->whereNot('user_id',Auth::id());
 
         if ($user_id != 0){
@@ -46,9 +46,17 @@ class PanelFormsController extends Controller
             $forms->where('end_date', '>=', $end_start_date);
         }
 
-        if ($end_end_date != 0){
+        if ($endless == 1){
+            $forms->whereNull('end_date');
+        }else if ($end_end_date != 0){
             $forms->where('end_date', '<=', $end_end_date);
         }
+
+        if ($payment_type < 3 && $payment_type >= 0){
+            $forms->where('payment_type', $payment_type);
+        }
+
+
 
         return response()->json(['total_price' => $forms->sum('price')]);
     }
@@ -75,7 +83,7 @@ class PanelFormsController extends Controller
         return view('panel.showForm', compact('form'));
     }
 
-    public function fetch($user_id, $start_date, $end_date,$start_start_date,$start_end_date,$end_start_date,$end_end_date){
+    public function fetch($user_id, $start_date, $end_date,$start_start_date,$start_end_date,$end_start_date,$end_end_date,$endless,$payment_type){
         $forms = Form::query()->whereNot('user_id',Auth::id());
 
         if ($user_id != 0){
@@ -102,8 +110,14 @@ class PanelFormsController extends Controller
             $forms->where('end_date', '>=', $end_start_date);
         }
 
-        if ($end_end_date != 0){
+        if ($endless == 1){
+            $forms->whereNull('end_date');
+        }else if ($end_end_date != 0){
             $forms->where('end_date', '<=', $end_end_date);
+        }
+
+        if ($payment_type < 3 && $payment_type >= 0){
+            $forms->where('payment_type', $payment_type);
         }
 
         return DataTables::of($forms)

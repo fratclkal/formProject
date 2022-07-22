@@ -153,7 +153,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" value="0" type="radio" name="payment_type" id="">
+                                                    <input class="form-check-input" value="2" type="radio" name="payment_type" id="">
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                         Ücretsiz
                                                     </label>

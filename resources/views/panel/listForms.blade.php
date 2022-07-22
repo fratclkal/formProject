@@ -35,11 +35,11 @@
 
                     <div class="form-group col-lg-12">
                         <h5>Ödeme Türü</h5>
-                        <select class="form-select" id="select_creator">
-                            <option selected>Ödeme Türü</option>
-
-                                <option value=""></option>
-
+                        <select class="form-select" id="select_payment_type">
+                                <option value="3" selected>Ödeme Türü</option>
+                                <option value="0">Kredi Kartı</option>
+                                <option value="1">Nakit</option>
+                                <option value="2">Ücretsiz</option>
                         </select>
                     </div>
 
@@ -79,6 +79,12 @@
                             <div class="form-group col-lg-6 col-md-12">
                                 <label for="end_date_end">Bitiş Tarihi</label>
                                 <input type="datetime-local" id="end_date_end" class="form-control">
+                                <div class="form-check">
+                                    <div class="custom-control custom-checkbox">
+                                        <input value="1" type="checkbox" class="form-check-input form-check-success" id="endless">
+                                        <label class="form-check-label" for="customColorCheck3"></label>Yalnızca süresizler
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -191,9 +197,9 @@
 
         function filter(){
 
-            let url = '{{route('panel.fetch.forms',[0,0,0,0,0,0,0])}}';
+            let url = '{{route('panel.fetch.forms',[0,0,0,0,0,0,0,0,3])}}';
 
-            url = url.replace('/0/0/0/0/0/0/0', '');
+            url = url.replace('/0/0/0/0/0/0/0/0/3', '');
 
 
             if($('#select_creator').val() != 'Oluşturucu'){
@@ -237,6 +243,15 @@
             }else{
                 url = url+'/0';
             }
+
+            if ($('#endless').is(':checked')){
+                url = url+'/1';
+            }else{
+                url = url+'/0';
+            }
+
+            url = url+'/'+$('#select_payment_type').val();
+
 
             console.log(url);
 
@@ -298,7 +313,7 @@
                 ],
                 processing: true,
                 serverSide: true,
-                ajax: '{{route('panel.fetch.forms',[0,0,0,0,0,0,0])}}',
+                ajax: '{{route('panel.fetch.forms',[0,0,0,0,0,0,0,0,3])}}',
                 columns: [
                     {data: 'name'},
                     {data: 'id'},
@@ -307,7 +322,7 @@
                     {data: 'delete'}
                 ],
                 "language":{
-                        "url": "//cdn.datatables.net/plug-ins/1.11.1/i18n/tr.json"
+                        "url": "/Turkish.json"
                 }
             } );
 
