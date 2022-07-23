@@ -42,6 +42,7 @@ class SendUpdateMailJob implements ShouldQueue
             'form_no' => $this->form->id,
             'name' => $this->form->name,
             'surname' => $this->form->sur_name,
+            'owner_name' => $this->form->getUser->name
         ];
 
 
@@ -49,8 +50,8 @@ class SendUpdateMailJob implements ShouldQueue
 
         foreach ($users as $user){
             Mail::send('/mailtemplates/updated', $array, function ($message) use ($user){
-                $message->from(env('MAIL_USERNAME'), 'Forms');
-                $message->subject("Form Updated");
+                $message->from(env('MAIL_USERNAME'), 'Biskur');
+                $message->subject("Form Güncellendi");
                 $message->to($user->email);
             });
         }

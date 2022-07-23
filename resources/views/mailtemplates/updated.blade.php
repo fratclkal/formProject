@@ -11,6 +11,7 @@
 
 <h4>Yeni Form Güncellemesi</h4>
 <br><br>
+Güncelleyen: {{$owner_name}}<br>
 İsim: {{$name}}<br>
 Soyisim: {{$surname}}<br>
 Form Numarası: {{$form_no}}

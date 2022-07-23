@@ -146,7 +146,7 @@
                                             </div>
                                             <div class="col-md-8 form-group">
                                                 <div class="form-check">
-                                                    <input disabled @if($form->payment_type != 1) checked @endif class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input disabled @if($form->payment_type == 0) checked @endif class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                                     <label class="form-check-label" for="flexRadioDefault1">
                                                         Kredi Kartı
                                                     </label>
@@ -155,6 +155,12 @@
                                                     <input disabled @if($form->payment_type == 1) checked @endif class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                         Nakit
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input disabled @if($form->payment_type == 2) checked @endif class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                        Ücretsiz
                                                     </label>
                                                 </div>
                                             </div>

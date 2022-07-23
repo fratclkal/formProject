@@ -36,7 +36,7 @@ class FormController extends Controller
             'end_date' => 'nullable | date',
             'price' => 'nullable | string | numeric',
             'payment_type' => 'required | in:2,1,0',
-            'images.*' => ['required', 'image', 'max:2048', 'mimes:jpg,png']
+            'images.*' => ['required', 'image', 'max:6144', 'mimes:jpg,png']
         ]);
 
         $files = $request->file('images');

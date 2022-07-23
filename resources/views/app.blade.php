@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{csrf_token()}}">
-    <title>@yield('head')</title>
+    @if(isset($page_title))
+        <title>{{$page_title}}</title>
+    @else
+        <title>@yield('head')</title>
+    @endif
+
 
     <link rel="stylesheet" href="{{asset('dist/assets/css/main/app.css')}}">
     <link rel="stylesheet" href="{{asset('dist/assets/css/main/app-dark.css')}}">
