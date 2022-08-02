@@ -1,135 +1,312 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kayıt Ol</title>
-    <style>
-        @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+    <title>KAYIT OL</title>
 
-        * {
-            margin: 0;
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        *{
             padding: 0;
+            margin: 0;
             box-sizing: border-box;
         }
 
-        html,
-        body {
-            width: 100%;
-            min-height: 100vh;
-            overflow-x: hidden;
+        body{
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
         }
 
-        body {
+        .wave{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container{
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap :7rem;
+            padding: 0 2rem;
+        }
+
+        .img{
             display: flex;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        .image {
-            background: url(https://images.unsplash.com/photo-1656267124947-39f3a2102d85?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NTY4MDMzODY&ixlib=rb-1.2.1&q=80)
-            rgba(255, 255, 255, 0.3);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-blend-mode: lighten;
-            flex: 1;
-        }
-
-        .sign-in {
-            display: flex;
+            justify-content: flex-end;
             align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            flex: 1;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-        }
-
-        form {
+        .login-content{
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            padding: 10px;
-            font-size: 1.2rem;
+        .img img{
+            width: 500px;
+        }
+
+        form{
+            width: 360px;
+        }
+
+        .login-content img{
+            height: 100px;
+        }
+
+        .login-content h2{
+            margin: 15px 0;
+            color: #333;
+            text-transform: uppercase;
+            font-size: 2.9rem;
+        }
+
+        .login-content .input-div{
+            position: relative;
+            display: grid;
+            grid-template-columns: 7% 93%;
+            margin: 25px 0;
+            padding: 5px 0;
+            border-bottom: 2px solid #d9d9d9;
+        }
+
+        .login-content .input-div.one{
+            margin-top: 0;
+        }
+
+        .i{
+            color: #d9d9d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .i i{
+            transition: .3s;
+        }
+
+        .input-div > div{
+            position: relative;
+            height: 45px;
+        }
+
+        .input-div > div > h5{
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 18px;
+            transition: .3s;
+        }
+
+        .input-div:before, .input-div:after{
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            width: 0%;
+            height: 2px;
+            background-color: #38d39f;
+            transition: .4s;
+        }
+
+        .input-div:before{
+            right: 50%;
+        }
+
+        .input-div:after{
+            left: 50%;
+        }
+
+        .input-div.focus:before, .input-div.focus:after{
+            width: 50%;
+        }
+
+        .input-div.focus > div > h5{
+            top: -5px;
+            font-size: 15px;
+        }
+
+        .input-div.focus > .i > i{
+            color: #38d39f;
+        }
+
+        .input-div > div > input{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
             border: none;
-            border-bottom: solid 1px #000;
             outline: none;
+            background: none;
+            padding: 0.5rem 0.7rem;
+            font-size: 1.2rem;
+            color: #555;
+            font-family: 'poppins', sans-serif;
         }
 
-        input[type="text"]::placeholder,
-        input[type="email"]::placeholder,
-        input[type="password"]::placeholder {
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
+        .input-div.pass{
+            margin-bottom: 4px;
         }
 
-        input[type="text"]:hover::placeholder,
-        input[type="email"]:hover::placeholder,
-        input[type="password"]:hover::placeholder {
-            color: #000;
-        }
-
-        input[type="submit"] {
-            background-color: #000;
-            color: #fff;
-            padding: 10px;
-            font-size: 1.3rem;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-            border-radius: 15px;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #eee;
-            color: #000;
-        }
-
-        a {
-            color: #424242;
+        a{
+            display: block;
+            text-align: right;
             text-decoration: none;
-            align-self: flex-end;
+            color: #999;
+            font-size: 0.9rem;
+            transition: .3s;
         }
 
-        a:hover {
-            text-decoration: underline;
+        a:hover{
+            color: #38d39f;
         }
 
-        ::selection {
+        .btn{
+            display: block;
+            width: 100%;
+            height: 50px;
+            border-radius: 25px;
+            outline: none;
+            border: none;
+            background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+            background-size: 200%;
+            font-size: 1.2rem;
             color: #fff;
-            background-color: #000;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .btn:hover{
+            background-position: right;
         }
 
-        @media screen and (max-width: 786px) {
-            .image {
-                display: none;
+
+        @media screen and (max-width: 1050px){
+            .container{
+                grid-gap: 5rem;
             }
         }
 
+        @media screen and (max-width: 1000px){
+            form{
+                width: 290px;
+            }
+
+            .login-content h2{
+                font-size: 2.4rem;
+                margin: 8px 0;
+            }
+
+            .img img{
+                width: 400px;
+            }
+        }
+
+        @media screen and (max-width: 900px){
+            .container{
+                grid-template-columns: 1fr;
+            }
+
+            .img{
+                display: none;
+            }
+
+            .wave{
+                display: none;
+            }
+
+            .login-content{
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
+<img class="wave" src="{{asset('images/biskurbuyuk.jpg')}}">
+<div class="container">
+    <div class="img">
 
-<div class="image"></div>
-<div class="sign-in">
-    <h1>Kayıt Ol</h1>
-    <form action="{{route('register')}}" method="POST">
-        @csrf
-        <input type="text" placeholder="İsim" name="name">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Şifre">
-        <input type="password" name="password_confirmation" placeholder="Şifre Tekrar">
-        <input type="submit" value="Kayıt Ol">
-    </form>
+    </div>
+    <div class="login-content">
+        <form action="{{route('register')}}" method="POST">
+            @csrf
+            <img src="{{asset('images/biskurlogo.png')}}">
+            <h2 class="title">KAYIT OL</h2>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>İsim</h5>
+                    <input type="text" class="input" name="name">
+                </div>
+            </div>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>E-mail</h5>
+                    <input type="email" class="input" name="email">
+                </div>
+            </div>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>Şifre</h5>
+                    <input type="password" class="input" name="password">
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5>Şifre Tekrar</h5>
+                    <input type="password" class="input" name="password_confirmation">
+                </div>
+            </div>
+
+            <input type="submit" class="btn" value="KAYIT OL">
+        </form>
+    </div>
 </div>
+<script>
+    const inputs = document.querySelectorAll(".input");
+
+
+    function addcl(){
+        let parent = this.parentNode.parentNode;
+        parent.classList.add("focus");
+    }
+
+    function remcl(){
+        let parent = this.parentNode.parentNode;
+        if(this.value == ""){
+            parent.classList.remove("focus");
+        }
+    }
+
+
+    inputs.forEach(input => {
+        input.addEventListener("focus", addcl);
+        input.addEventListener("blur", remcl);
+    });
+
+    //Source :- https://github.com/sefyudem/Responsive-Login-Form/blob/master/img/avatar.svg
+</script>
 
 </body>
 </html>

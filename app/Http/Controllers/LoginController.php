@@ -19,7 +19,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             if (Auth::user()->role == 'Admin'){
-                return redirect()->route('panel');
+                return redirect()->route('listForms');
             }else{
                 return redirect()->route('index');
             }
